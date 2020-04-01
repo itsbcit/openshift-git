@@ -1,2 +1,2 @@
-# docker-template
-Template for new BCIT Docker image repositories
+# openshift-git
+git git-lfs vim less
