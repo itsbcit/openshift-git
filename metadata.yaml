@@ -1,0 +1,13 @@
+---
+image_name: openshift-git
+org_name: bcit
+labels:
+  maintainer: "jesse@weisner.ca, chriswood.ca@gmail.com"
+versions:
+  '3.10':
+    version_tags:
+      - latest
+vars:
+  tini_version: '0.18.0'
+  de_version: '1.5'
+  dockerize_version: '0.6.0'
