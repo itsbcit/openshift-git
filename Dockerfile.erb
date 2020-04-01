@@ -8,5 +8,12 @@ FROM alpine:<%= image.version %>
 
 <%= snippet('tini', binding) -%>
 
+RUN apk --update add git git-lfs rsync less openssh vim && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm /var/cache/apk/*
+
+VOLUME /git
+WORKDIR /git
+
 ENTRYPOINT ["/tini", "--", "/docker-entrypoint.sh"]
-CMD [ "init-loop" ]
+CMD [ "git", "--help" ]

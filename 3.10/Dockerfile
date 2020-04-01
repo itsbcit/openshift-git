@@ -1,7 +1,7 @@
 FROM alpine:3.10
 
 LABEL maintainer="jesse@weisner.ca, chriswood.ca@gmail.com"
-LABEL build_id="1585775820"
+LABEL build_id="1585776462"
 
 # Add docker-entrypoint script base
 ADD https://github.com/itsbcit/docker-entrypoint/releases/download/v1.5/docker-entrypoint.tar.gz /docker-entrypoint.tar.gz
@@ -25,5 +25,12 @@ ENV DOCKERIZE_ENV production
 ADD https://github.com/krallin/tini/releases/download/v0.18.0/tini-static-amd64 /tini
 RUN chmod +x /tini
 
+RUN apk --update add git git-lfs rsync less openssh vim && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm /var/cache/apk/*
+
+VOLUME /git
+WORKDIR /git
+
 ENTRYPOINT ["/tini", "--", "/docker-entrypoint.sh"]
-CMD [ "init-loop" ]
+CMD [ "git", "--help" ]
